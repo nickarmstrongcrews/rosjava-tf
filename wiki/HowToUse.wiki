@@ -1,0 +1,17 @@
+#summary How to use
+
+= Introduction =
+
+ * Use svn to checkout read-only copy of source.
+ * Import projects into Eclipse
+ * Download dependencies (below), add them as referenced jars in Eclipse project
+ * build
+ * run a local roscore
+ * run TfViz
+ * run android_tf_tools.demo with your phone attached
+
+= Dependencies =
+
+Download the following jars:
+  * jgraph.jar ( http://www.jgrapht.org )
+  * libvecmath.jar ( part of Java 3D, sudo apt-get )
