@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry combineaccessrules="false" kind="src" path="/rosjava_tf_core"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/navigator/.m2/repository/com/google/guava/org.ros.rosjava.guava/r07/org.ros.rosjava.guava-r07.jar"/>
@@ -31,6 +32,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/home/navigator/Downloads/jgrapht-0.8.2/lib/TGGraphLayout.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/rosjava_tf_core"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>

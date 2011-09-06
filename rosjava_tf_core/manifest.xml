@@ -1,11 +1,11 @@
 <package>
-  <description brief="rosjava_tf">
+  <description brief="rosjava_tf_core">
 
   </description>
-  <author>Navigator</author>
-  <license>BSD</license>
+  <author>Nick Armstrong-Crews</author>
+  <license>Apache 2.0</license>
   <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/android_imu</url>
+  <url>http://ros.org/wiki/rosjava_tf_core</url>
 
   <depend package="rosjava" />
   <depend package="geometry_msgs" />
