@@ -3,12 +3,12 @@
 
   </description>
   <author>Nick Armstrong-Crews</author>
-  <license></license>
+  <license>Apache 2.0</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/android_tf_tools</url>
 
   <depend package="rosjava"/>
-  <depend package="rosjava_tf"/>
+  <depend package="rosjava_tf_core"/>
   <depend package="android"/>
 
   <export>
