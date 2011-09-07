@@ -122,7 +122,7 @@ public class TransformTree extends AbstractTransformDatabase {
 			for( TransformBuffer txBuff : path ) {
 				mostRecentTime = Math.min(mostRecentTime, txBuff.mostRecentTime());
 			}
-
+			
 			Vector<Transform> txPath = new Vector<Transform>(path.size());
 			for( TransformBuffer txBuff : path ) {
 				txPath.add(txBuff.lookupTransform(mostRecentTime));
