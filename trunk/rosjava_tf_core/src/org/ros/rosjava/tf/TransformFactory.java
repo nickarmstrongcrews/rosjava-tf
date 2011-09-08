@@ -29,7 +29,7 @@ public class TransformFactory {
 	}
 	
 	public static Quat4d msg2quaternion(org.ros.message.geometry_msgs.Quaternion q) {
-		return new Quat4d(q.w, q.x, q.y, q.z);
+		return new Quat4d(q.x, q.y, q.z, q.w);
 	}
 
 	public static Vector3d msg2vector(org.ros.message.geometry_msgs.Vector3 v) {
