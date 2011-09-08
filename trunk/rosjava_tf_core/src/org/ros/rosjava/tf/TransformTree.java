@@ -44,26 +44,35 @@ public class TransformTree extends AbstractTransformDatabase {
 
 	@Override
 	public void add(StampedTransform tx) {
-
-		if(!graph.containsVertex(tx.parentFrame))
-			graph.addVertex(tx.parentFrame);
-		if(!graph.containsVertex(tx.childFrame))
-			graph.addVertex(tx.childFrame);
-		if(!graph.containsEdge(tx.parentFrame, tx.childFrame))
-			graph.addEdge(tx.parentFrame, tx.childFrame, new TransformBuffer(tx.parentFrame, tx.childFrame));
 		
-		TransformBuffer txBuff = graph.getEdge(tx.parentFrame, tx.childFrame);
+		synchronized(graph) {
 
-//		if(txBuff != null)
-		txBuff.put(tx);
-		
-		/*
-		// TODO: check for childFrame->parentFrame, invert it and add (and print warning)
-		else if((txBuff = graph.getEdge(tx.childFrame, tx.parentFrame)) != null) {
-			tx.invert();
-			txBuff.put(tx);
+			if(!graph.containsVertex(tx.parentFrame))
+				graph.addVertex(tx.parentFrame);
+			if(!graph.containsVertex(tx.childFrame))
+				graph.addVertex(tx.childFrame);
+
+			
+			TransformBuffer txBuff;
+			if(!graph.containsEdge(tx.parentFrame, tx.childFrame)) {
+				//graph.addEdge(tx.parentFrame, tx.childFrame, new TransformBuffer(tx.parentFrame, tx.childFrame));
+				txBuff = new TransformBuffer(tx.parentFrame, tx.childFrame);
+				txBuff.put(tx);
+				graph.addEdge(tx.parentFrame, tx.childFrame, txBuff);
+			} else {
+				txBuff = graph.getEdge(tx.parentFrame, tx.childFrame);
+				txBuff.put(tx);
+			}
+	
+			/*
+			// TODO: check for childFrame->parentFrame, invert it and add (and print warning)
+			else if((txBuff = graph.getEdge(tx.childFrame, tx.parentFrame)) != null) {
+				tx.invert();
+				txBuff.put(tx);
+			}
+			 */
+			
 		}
-*/
 
 	}
 
