@@ -50,7 +50,7 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 				URI masterUri = new URI(laptopMasterUri);
 				NodeConfiguration nodeConfiguration =
 					NodeConfiguration.newPublic("localhost", masterUri);
-				nodeRunner.run(new TfViz(), nodeConfiguration);
+				nodeRunner.run(new TfTextViz(), nodeConfiguration);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}			
@@ -93,12 +93,11 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 	    	try {
 	    		// TODO: use topological ordering to print neatly
 	    		// TopologicalOrderIterator(DirectedGraph<V,E> dg)
-	    		/*
 	    		for( TransformBuffer txBuff : tfl.getTree().getGraph().edgeSet() ) {
 	    			Transform tx = tfl.getTree().lookupMostRecent(txBuff.parentFrame, txBuff.childFrame);
 	    			System.out.println(tx.toString());
-	    		}*/
-	    		System.out.println(e.getEdge().getId());
+	    		}
+	    		//System.out.println(e.getEdge().getId());
 	    	} catch(Exception exp) {exp.printStackTrace();}
 	    }
 
