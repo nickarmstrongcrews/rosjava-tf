@@ -21,18 +21,22 @@ import org.ros.message.tf.tfMessage;
 import org.ros.node.DefaultNodeFactory;
 import org.ros.node.Node;
 import org.ros.node.NodeConfiguration;
+import org.ros.node.NodeMain;
 import org.ros.rosjava.android.views.RosTextView;
+import org.ros.rosjava.tf.StampedTransform;
+import org.ros.rosjava.tf.TransformFactory;
 import org.ros.rosjava.tf.TransformTree;
 
 import com.google.common.base.Preconditions;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.TextView;
 
 /**
  * @author nick@heuristiclabs.com (Nick Armstrong-Crews)
  */
-public class RosTfView extends RosTextView<tfMessage> {
+public class RosTfView extends TextView implements NodeMain /*extends RosTextView<tfMessage>*/ {
 
 	protected TransformTree tfTree;
 	protected Node node;
@@ -56,11 +60,16 @@ public class RosTfView extends RosTextView<tfMessage> {
 		    node = new DefaultNodeFactory().newNode("android/tf_view", nodeConfiguration);
 		    node.newSubscriber("/tf", "tf/tfMessage", new MessageListener<tfMessage>() {
 		      @Override
-		      public void onNewMessage(final tfMessage message) {
+		      public void onNewMessage(final tfMessage msg) {
 		          post(new Runnable() {
 		            @Override
 		            public void run() {
-		              setText(message.toString());
+		              String s = "";
+		        	  for( org.ros.message.geometry_msgs.TransformStamped tx :  msg.transforms ) {
+		        		  s += tx.header.stamp + ": " + tx.header.frame_id + "->" + tx.child_frame_id;
+		        		  //s += TransformFactory.msg2transform(tx).toString();
+		        	  }
+		              setText(s);
 		            }
 		          });
 		        postInvalidate();
@@ -68,5 +77,12 @@ public class RosTfView extends RosTextView<tfMessage> {
 		    });
 
 	  }
+	  
+	    @Override
+	    public void shutdown() {
+	        Preconditions.checkNotNull(node);
+	    	node.shutdown();
+	    	node = null;
+	    }
 
 }
