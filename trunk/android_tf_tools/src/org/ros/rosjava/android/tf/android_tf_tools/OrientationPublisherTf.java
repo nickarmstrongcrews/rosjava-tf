@@ -53,7 +53,7 @@ public class OrientationPublisherTf implements NodeMain {
       if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
     	float[] q = new float[4];
         SensorManager.getQuaternionFromVector(q, event.values);
-        tfb.sendTransform(	"/phone_unoriented", "/phone_oriented",
+        tfb.sendTransform(	"/phone", "/phone_oriented",
         					((long) System.currentTimeMillis())*1000000, // nanoseconds
         					0, 0, 0,
         					q[1], q[2], q[3], q[0] // different order
