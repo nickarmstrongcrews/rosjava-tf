@@ -53,25 +53,27 @@ public class StaticTransformPublisher implements NodeMain {
 		this.tx = new Transform(
 									parentFrame, childFrame,
 									new Vector3d(v_x, v_y, v_z),
-									new Quat4d(q_w, q_x, q_y, q_z)
+									new Quat4d(q_x, q_y, q_z, q_w)
 								);
 	}
 
-
-
 	@Override
 	public void main(NodeConfiguration nodeConfig) throws Exception {
+		System.out.print("Starting StaticTransformPublisher: " + tx.getId() + "...");
 		node = new DefaultNodeFactory().newNode(nodeName, nodeConfig);
 		tfb = new TransformBroadcaster(node);
-		while(node != null && node.isOk()) {
+		System.out.println("...started.");
+//		while(node != null && node.isOk()) {
+		while(node != null) {
 			long now = (long) System.currentTimeMillis() * 1000000; // nanoseconds
+			//System.out.println("Sending static transform: " + tx.getId());
 	        tfb.sendTransform(
-	        		"/phone_unoriented", "/phone_oriented",
+	        		tx.parentFrame, tx.childFrame,
 					now,
 					tx.translation.x, tx.translation.y, tx.translation.z,
 					tx.rotation.x, tx.rotation.y, tx.rotation.z, tx.rotation.w
 				);
-	        Thread.sleep((long) (1000 / rate));
+	        Thread.sleep((long) (1000 / rate)); // convert rate in Hz to period in milliseconds
 		}
 	}
 
