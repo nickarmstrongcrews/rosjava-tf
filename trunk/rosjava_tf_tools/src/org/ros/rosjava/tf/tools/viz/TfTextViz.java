@@ -37,6 +37,7 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 	/**
 	 * @author nick@heuristiclabs.com (Nick Armstrong-Crews)
 	 * @brief real-time, interactive graph visualizer for rosjava_tf
+	 * 
 	 * @since Sep 5, 2011
 	 */
 	public class TfTextViz implements NodeMain, GraphListener<String,TransformBuffer> {		
@@ -59,11 +60,9 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 	    private TransformListener tfl;
 
 	    //protected final HashMap<String,Edge> edges;
-	    protected final HashMap<String,com.touchgraph.graphlayout.Node> vertices;
 	    	  
 	    public TfTextViz() {
 	    	//edges = new HashMap<String,Edge>();
-	    	vertices = new HashMap<String,com.touchgraph.graphlayout.Node>();
 	    }
 	    
 	    @Override
@@ -71,7 +70,7 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 	    	Preconditions.checkState(node == null);
 	    	Preconditions.checkNotNull(configuration);
 	    	try {
-	    		node = new DefaultNodeFactory().newNode("tfviz", configuration);
+	    		node = new DefaultNodeFactory().newNode("tf_textviz", configuration);
 	    		tfl = new TransformListener(node);
 	    		tfl.addListener(this);
 	    	} catch (Exception e) {
@@ -92,12 +91,14 @@ import org.jgrapht.event.GraphVertexChangeEvent;
 	    @Override
 	    public void edgeAdded(GraphEdgeChangeEvent<String, TransformBuffer> e) {
 	    	try {
-	    		// Idea: use topological ordering to print neatly
+	    		// TODO: use topological ordering to print neatly
 	    		// TopologicalOrderIterator(DirectedGraph<V,E> dg)
+	    		/*
 	    		for( TransformBuffer txBuff : tfl.getTree().getGraph().edgeSet() ) {
 	    			Transform tx = tfl.getTree().lookupMostRecent(txBuff.parentFrame, txBuff.childFrame);
 	    			System.out.println(tx.toString());
-	    		}
+	    		}*/
+	    		System.out.println(e.getEdge().getId());
 	    	} catch(Exception exp) {exp.printStackTrace();}
 	    }
 
