@@ -38,17 +38,17 @@ public class VizDemo {
 	protected static final int masterPort = 11311;
 	protected static final String laptopMasterUriString = "http://" + laptopIp + ":" + masterPort;
 	protected final NodeRunner nodeRunner;
-	protected StaticTransformPublisher earthToPhone;
+	protected StaticTransformPublisher moonToEarth;
 
 	protected static boolean spawnRosCore = false;
 	protected RosCore rosCore;
 
 	public VizDemo() {
 		nodeRunner = NodeRunner.newDefault();
-		earthToPhone = new StaticTransformPublisher(
-				"earthToPhone",		// node name
+		moonToEarth = new StaticTransformPublisher(
+				"moonToEarth",		// node name
 				10.0,				// rate in Hz
-				"earth", "/phone",	// parent->child
+				"/moon", "/earth",	// parent->child
 				0.0, 0.0, 0.0,		// translation vector
 				0.0, 0.0, 0.0, 1.0d // rotation (quaternion)
 		);
@@ -65,7 +65,7 @@ public class VizDemo {
 			System.out.println("...roscore started.");
 		}
 
-		nodeRunner.run(earthToPhone, NodeConfiguration.newPublic("localhost", masterUri));
+		nodeRunner.run(moonToEarth, NodeConfiguration.newPublic("localhost", masterUri));
 		//nodeRunner.run(new TfTextViz(), NodeConfiguration.newPublic("localhost", masterUri));
 		nodeRunner.run(new TfViz(), NodeConfiguration.newPublic("localhost", masterUri));
 
