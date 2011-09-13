@@ -26,6 +26,6 @@
 	<classpathentry kind="lib" path="/opt/ros/external/google/rosjava_core/rosjava_bootstrap/target/org.ros.rosjava.rosjava_bootstrap-0.0.0.jar"/>
 	<classpathentry kind="lib" path="/home/navigator/.ros/rosjava/lib/org.ros.rosjava.sensor_msgs-0.0.0.jar"/>
 	<classpathentry kind="src" path="android_src"/>
-	<classpathentry kind="src" path="android_res"/>
+	<classpathentry excluding="drawable*" kind="src" path="android_res"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
