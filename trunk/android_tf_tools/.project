@@ -3,6 +3,7 @@
 	<name>android_tf_tools</name>
 	<comment></comment>
 	<projects>
+		<project>rosjava_tf_core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

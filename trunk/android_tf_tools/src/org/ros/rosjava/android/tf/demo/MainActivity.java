@@ -20,12 +20,14 @@ import java.net.URI;
 
 import android.app.Activity;
 import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import org.ros.node.DefaultNodeFactory;
 import org.ros.node.Node;
 import org.ros.node.NodeConfiguration;
 import org.ros.node.NodeRunner;
+import org.ros.rosjava.android.tf.android_tf_tools.GlobalPosePublisherTf;
 import org.ros.rosjava.android.tf.android_tf_tools.OrientationPublisherTf;
 import org.ros.rosjava.android.tf.android_tf_tools.R;
 import org.ros.rosjava.android.tf.android_tf_tools.RosTfView;
@@ -40,6 +42,7 @@ public class MainActivity extends Activity {
   
   protected RosTfView tfPrinter;
   protected OrientationPublisherTf oPubTf;
+  protected GlobalPosePublisherTf globalPosePub;
   
   //protected final TransformTree tfTree;
   
@@ -60,7 +63,8 @@ public class MainActivity extends Activity {
   protected void onPause() {
     super.onPause();
     tfPrinter.shutdown();
-    oPubTf.shutdown();
+    //oPubTf.shutdown();
+    globalPosePub.shutdown();
   }
     
   @Override
@@ -70,8 +74,14 @@ public class MainActivity extends Activity {
       URI masterUri = new URI("http://192.168.43.171:11311");
       //tfTree = new TransformTree();
       nodeRunner.run(tfPrinter, NodeConfiguration.newPublic("192.168.43.1", masterUri));
-      oPubTf = new OrientationPublisherTf((SensorManager) getSystemService(SENSOR_SERVICE));
-      nodeRunner.run(oPubTf, NodeConfiguration.newPublic("192.168.43.1", masterUri));
+      //oPubTf = new OrientationPublisherTf((SensorManager) getSystemService(SENSOR_SERVICE));
+      //nodeRunner.run(oPubTf, NodeConfiguration.newPublic("192.168.43.1", masterUri));
+      globalPosePub =
+          new GlobalPosePublisherTf(
+      		  	(SensorManager) getSystemService(SENSOR_SERVICE),
+      		  	(LocationManager) getSystemService(LOCATION_SERVICE)
+      		  );
+      nodeRunner.run(globalPosePub, NodeConfiguration.newPublic("192.168.43.1", masterUri));
       //Node node = new DefaultNodeFactory().newNode("android/tfl", NodeConfiguration.newPublic("192.168.43.1", masterUri));
       //TransformListener tfl = new TransformListener(node);
     } catch (Exception e) {
