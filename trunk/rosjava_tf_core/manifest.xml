@@ -17,6 +17,8 @@
     <rosjava-src location="src" />
  </export>
 
+ <rosdep name="libvecmath-java"/>
+
 </package>
 
 

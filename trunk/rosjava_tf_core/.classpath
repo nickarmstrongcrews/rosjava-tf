@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/home/navigator/.m2/repository/com/google/guava/org.ros.rosjava.guava/r07/org.ros.rosjava.guava-r07.jar"/>
 	<classpathentry kind="lib" path="/home/navigator/.m2/repository/org/apache/commons/com.springsource.org.apache.commons.httpclient/3.1.0/com.springsource.org.apache.commons.httpclient-3.1.0.jar"/>
@@ -21,16 +20,15 @@
 	<classpathentry kind="lib" path="/opt/ros/external/google/rosjava_core/apache_commons_util/target/org.ros.rosjava.ws-commons-util-1.0.2.jar"/>
 	<classpathentry kind="lib" path="/opt/ros/external/google/rosjava_core/rosjava_bootstrap/target/org.ros.rosjava.rosjava_bootstrap-0.0.0.jar"/>
 	<classpathentry kind="lib" path="/home/navigator/.ros/rosjava/lib/org.ros.rosjava.sensor_msgs-0.0.0.jar"/>
-	<classpathentry kind="lib" path="/usr/share/java/vecmath.jar">
+	<classpathentry exported="true" kind="lib" path="/usr/share/java/vecmath.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/usr/share/doc/libvecmath-java-doc/api/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/navigator/Downloads/jgrapht-0.8.2/jgrapht-jdk1.6.jar">
+	<classpathentry exported="true" kind="lib" path="/home/navigator/Downloads/jgrapht-0.8.2/jgrapht-jdk1.6.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/home/navigator/Downloads/jgrapht-0.8.2/javadoc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
